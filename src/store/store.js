@@ -6,13 +6,34 @@ export const getState = ({ getActions, getStore, setStore }) => {
             listOfplanets: [],
             listOfvehicles: [],
             wishlist: [],
+            favorites:[],
+            clickedObj:[],
 
 
 
         },
         actions: {
-
-
+            appendFav:(fav)=>{
+                const store=getStore()
+                const addfavs= store.favorites
+                addfavs.push(fav)
+                setStore({favorites:addfavs})
+                console.log(store.favorites)
+            },
+            delFav:(index)=>{
+                const store= getStore()
+                store.favorites.splice(index,1)
+                setStore({favorites:store.favorites})
+                console.log(store.favorites)
+           
+            },
+            objinfo:(index)=>{
+                const store= getStore()
+                store.favorites.splice(index,1)
+                setStore({favorites:store.favorites})
+                console.log(store.favorites)
+           
+            },
             getPeople: () => {
                 const store = getStore()
                 fetch("https://www.swapi.tech/api/people")

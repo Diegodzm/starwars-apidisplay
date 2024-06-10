@@ -13,16 +13,21 @@ function CardPeople() {
         console.log(store.listOfpeople)
 
     }, []);
+    const addfavorite=(product)=>{
+        actions.appendFav(product)
+   
+    }
     return <ScrollMenu className='filapersonajes '>
     {store.listOfpeople.map((product, index) => (
-        <Card key={index} style={{ width: '18rem' }} className='mb-5'>
+        <Card key={index} style={{ width: '18rem' }}>
             <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>
                     asdasdsadasd
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <Button onClick={()=>{console.log(product)}} variant="primary">Go </Button>
+                <Button  onClick={()=>{addfavorite(product)}}  className='mx-1 btn-warning'>add favorite</Button>
             </Card.Body>
         </Card>
         ))}
