@@ -27,20 +27,23 @@ export const getState = ({ getActions, getStore, setStore }) => {
                 console.log(store.favorites)
 
             },
-            objinfo: (obj) => {
-                console.log(obj)
+            objinfo: async(obj) => {
+                
                 const store=getStore()
                 setStore({ clickedObjmoreinfo: obj })
-                fetch(obj.url)
+                await fetch(obj.url)
                     .then(res => res.json())
                     .then(data => {
-                        setStore({ clickedObj: data })
+                        setStore({ clickedObj: data.result })
                         console.log(store.clickedObj)
+                        console.log(store.clickedObjmoreinfo)
+                        return true
                     })
                     .catch(error => console.error(error))
+                return true
 
             },
-            getPeople: () => {
+            getPeople: async() => {
                 const store = getStore()
                 fetch("https://www.swapi.tech/api/people")
                     .then(res => res.json())

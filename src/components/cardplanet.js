@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 function CardPlanet() {
     const { actions, store } = useContext(Context)
+
     const addfavorite=(product)=>{
         actions.appendFav(product)
    
@@ -23,7 +24,7 @@ function CardPlanet() {
                 <Card.Text>
                     asdasdsadasd
                 </Card.Text>
-                <Link className="text-white"to={"/info"}> <Button onClick={()=>{actions.objinfo(obj)}} variant="primary">go</Button></Link>
+                <Link className="text-white"to={"/infoplanet"}> <Button onClick={()=>{actions.objinfo(obj)}} variant="primary">go</Button></Link>
                 <Button onClick={()=>{addfavorite(obj)}} className='mx-1 btn-warning'>add favorite</Button>
             </Card.Body>
         </Card>
