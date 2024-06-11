@@ -6,33 +6,39 @@ export const getState = ({ getActions, getStore, setStore }) => {
             listOfplanets: [],
             listOfvehicles: [],
             wishlist: [],
-            favorites:[],
-            clickedObj:[],
-
+            favorites: [],
+            clickedObj: [],
+            clickedObjmoreinfo:[],
 
 
         },
         actions: {
-            appendFav:(fav)=>{
-                const store=getStore()
-                const addfavs= store.favorites
+            appendFav: (fav) => {
+                const store = getStore()
+                const addfavs = store.favorites
                 addfavs.push(fav)
-                setStore({favorites:addfavs})
+                setStore({ favorites: addfavs })
                 console.log(store.favorites)
             },
-            delFav:(index)=>{
-                const store= getStore()
-                store.favorites.splice(index,1)
-                setStore({favorites:store.favorites})
+            delFav: (index) => {
+                const store = getStore()
+                store.favorites.splice(index, 1)
+                setStore({ favorites: store.favorites })
                 console.log(store.favorites)
-           
+
             },
-            objinfo:(index)=>{
-                const store= getStore()
-                store.favorites.splice(index,1)
-                setStore({favorites:store.favorites})
-                console.log(store.favorites)
-           
+            objinfo: (obj) => {
+                console.log(obj)
+                const store=getStore()
+                setStore({ clickedObjmoreinfo: obj })
+                fetch(obj.url)
+                    .then(res => res.json())
+                    .then(data => {
+                        setStore({ clickedObj: data })
+                        console.log(store.clickedObj)
+                    })
+                    .catch(error => console.error(error))
+
             },
             getPeople: () => {
                 const store = getStore()
@@ -43,21 +49,21 @@ export const getState = ({ getActions, getStore, setStore }) => {
                 console.log(store.listOfpeople)
             },
             getPlanets: () => {
-                const store= getStore()
+                const store = getStore()
 
                 fetch("https://www.swapi.tech/api/planets")
                     .then(res => res.json())
-                    .then(data => setStore({ listOfplanets: data.results  }))
+                    .then(data => setStore({ listOfplanets: data.results }))
                     .catch(err => console.error(err))
-                    console.log(store.listOfplanets)
+                console.log(store.listOfplanets)
             },
             getVehicles: () => {
-                const store= getStore()
+                const store = getStore()
                 fetch("https://www.swapi.tech/api/vehicles")
                     .then(res => res.json())
-                    .then(data => setStore({ listOfvehicles: data.results  }))
+                    .then(data => setStore({ listOfvehicles: data.results }))
                     .catch(err => console.error(err))
-                    console.log(store.listOfvehicles)
+                console.log(store.listOfvehicles)
 
 
             }

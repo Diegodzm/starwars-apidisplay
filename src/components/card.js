@@ -9,25 +9,27 @@ import 'react-horizontal-scrolling-menu/dist/styles.css';
 function ClickedObj() {
     const { actions, store } = useContext(Context)
    
-    const addfavorite = (product) => {
-        actions.appendFav(product)
-
-    }
-    return <Card key={index} style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+    
+    return <Card >
+        <Card.Img keyvariant="top" src="holder.js/100px180" />
         <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
+            
             <Card.Text>
-                asdasdsadasd
+       
             </Card.Text>
-            <Button variant="primary">Go </Button>
-            <Button onClick={() => { addfavorite(product) }} className='mx-1 btn-warning'>add favorite</Button>
+            <Card.Text>
+         
+            </Card.Text>
+            <Card.Text>
+
+
+            </Card.Text>
         </Card.Body>
     </Card>
 
 
 
-}
+
 };
 
 export default ClickedObj;
