@@ -16,9 +16,16 @@ export const getState = ({ getActions, getStore, setStore }) => {
             appendFav: (fav) => {
                 const store = getStore()
                 const addfavs = store.favorites
-                addfavs.push(fav)
-                setStore({ favorites: addfavs })
-                console.log(store.favorites)
+                if(addfavs.includes(fav)){
+                    console.log("existe favorito")
+                }
+                else{
+                    addfavs.push(fav)
+                    setStore({ favorites: addfavs })
+                    console.log(store.favorites)
+
+                }
+              
             },
             delFav: (index) => {
                 const store = getStore()
@@ -27,16 +34,13 @@ export const getState = ({ getActions, getStore, setStore }) => {
                 console.log(store.favorites)
 
             },
-            objinfo: async(obj) => {
-                
+            objinfo: async(obj) => {  
                 const store=getStore()
                 setStore({ clickedObjmoreinfo: obj })
                 await fetch(obj.url)
                     .then(res => res.json())
                     .then(data => {
                         setStore({ clickedObj: data.result })
-                        console.log(store.clickedObj)
-                        console.log(store.clickedObjmoreinfo)
                         return true
                     })
                     .catch(error => console.error(error))
